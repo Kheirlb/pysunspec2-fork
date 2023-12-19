@@ -544,7 +544,9 @@ class ModbusClientTCP(object):
             self.trace_func(s)
 
         if except_code:
-            raise ModbusClientException('Modbus exception %d: addr: %s count: %s' % (except_code, addr, count))
+            # NOTE(kparks): Hack for AXS Port to avoid https://github.com/sunspec/pysunspec2/issues/83
+            pass
+            # raise ModbusClientException('Modbus exception %d: addr: %s count: %s' % (except_code, addr, count))
 
         return resp[(TCP_HDR_LEN + 3):]
 
